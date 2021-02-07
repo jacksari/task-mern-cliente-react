@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Register() {
@@ -24,13 +24,18 @@ function Register() {
 
     // Validar que no haya campos vacios
 
+    // Passsword mínimo 6 caracteres
+
+
     // Pasarlo al action
   };
   return (
     <div className="form-usuario">
       <div className="contenedor-form sombra-dark">
         <h1>Obtener una cuenta</h1>
-        <form action="">
+        <form
+          onSubmit={onSubmit}
+        >
           <div className="campo-form">
             <label htmlFor="nombre">Nombre</label>
             <input
@@ -39,7 +44,7 @@ function Register() {
               name="nombre"
               placeholder="Tu nombre"
               onChange={onChange}
-              value={ nombre}
+              value={nombre}
             />
           </div>
           <div className="campo-form">

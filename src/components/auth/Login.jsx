@@ -20,7 +20,6 @@ function Login() {
 
     // Validar que no haya campos vacios
 
-    // Passsword mínimo 6 caracteres
 
     // Confirmar si los 2 contraseñas son iguuales
 
