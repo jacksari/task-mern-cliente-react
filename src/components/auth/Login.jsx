@@ -60,7 +60,7 @@ function Login() {
             <input type="submit" value="Iniciar Sesión" className="btn btn-primario btn-block" />
           </div>
         </form>
-        <Link to="/nueva-" className="enlace-cuenta">Obtener cuenta</Link>
+        <Link to="/registro" className="enlace-cuenta">Obtener cuenta</Link>
       </div>
     </div>
   );

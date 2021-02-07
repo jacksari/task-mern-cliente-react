@@ -419,3 +419,12 @@ Navbar
   z-index: 2;
   box-shadow: var(--blanco);
 }
+
+.btn-eliminar {
+  background-color: var(--blanco);
+  transition: .5s all ease-in-out;
+}
+.btn-eliminar:hover {
+  background-color: var(--gris2);
+  color: white;
+}

@@ -65,7 +65,7 @@ function Register() {
               id="password"
               name="password"
               placeholder="Tu password"
-              onChange={confirmar}
+              onChange={onChange}
               value={password}
             />
           </div>
@@ -77,14 +77,14 @@ function Register() {
               name="confirmar"
               placeholder="Tu password"
               onChange={onChange}
-              value={password}
+              value={confirmar}
             />
           </div>
           <div className="campo-form">
             <input type="submit" value="Iniciar Sesión" className="btn btn-primario btn-block" />
           </div>
         </form>
-        <Link to="/nueva-cuenta" className="enlace-cuenta">Obtener cuenta</Link>
+        <Link to="/iniciar-sesion" className="enlace-cuenta">Obtener cuenta</Link>
       </div>
     </div>
   );
