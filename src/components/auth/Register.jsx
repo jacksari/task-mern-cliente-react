@@ -26,7 +26,6 @@ function Register() {
 
     // Passsword mínimo 6 caracteres
 
-
     // Pasarlo al action
   };
   return (

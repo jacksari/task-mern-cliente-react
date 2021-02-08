@@ -20,7 +20,6 @@ function Login() {
 
     // Validar que no haya campos vacios
 
-
     // Confirmar si los 2 contraseñas son iguuales
 
     // Pasarlo al action

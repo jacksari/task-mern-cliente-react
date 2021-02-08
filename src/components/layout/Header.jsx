@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -8,7 +9,7 @@ function Header() {
         <span> Jack Sari</span>
       </p>
       <nav className="nav-principal">
-        <a href="#">Cerrar sesión</a>
+        <Link to="/">Cerrar Sesión</Link>
       </nav>
     </header>
   );

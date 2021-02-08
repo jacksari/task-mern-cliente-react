@@ -40,6 +40,7 @@ const ProyectoState = ({ children }) => {
   };
   // Agregar nuevo proyecto
   const agregarProyecto = (proyecto) => {
+    // eslint-disable-next-line no-param-reassign
     proyecto.id = uuid();
     dispatch({
       type: AGREGAR_PROYECTO,
@@ -68,6 +69,7 @@ const ProyectoState = ({ children }) => {
   };
 
   return (
+  // eslint-disable-next-line react/jsx-filename-extension
     <proyectoContext.Provider
       value={{
         proyectos: state.proyectos,
