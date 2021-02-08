@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { v4 as uuid } from 'uuid';
 import TareaContext from './tareaContext';
 
 import TareaReducer from './tareaReducer';
@@ -52,10 +53,12 @@ const TareaState = ({ children }) => {
     });
   };
   // Agregar tarea
-  const agregarTarea = (tarea) => {
+  const agregarTarea = (tareaAgregada) => {
+    // eslint-disable-next-line no-param-reassign
+    tareaAgregada.id = uuid();
     dispatch({
       type: AGREGAR_TAREAS,
-      payload: tarea,
+      payload: tareaAgregada,
     });
   };
   // Valida y muestra el error
