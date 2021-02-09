@@ -2,11 +2,19 @@ import React, { useContext, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Proyecto from './Proyecto';
 import proyectoContext from '../../context/proyectos/proyectoContext';
+import alertaContext from '../../context/alertas/alertaContext';
 
 function ListadoProyectos() {
   // Solicitar state del context
-  const { proyectos, obtenerProyectos } = useContext(proyectoContext);
+  const { proyectos, obtenerProyectos, mensaje } = useContext(proyectoContext);
+  const { alerta, mostrarAlerta } = useContext(alertaContext)
   // Obtener proyectos cuando carga el componenete
+  useEffect(() => {
+    // Si hay un error
+    if(mensaje){
+      mostrarAlerta(mensaje.msg, mensaje.categoria)
+    }
+  }, [mensaje]);
   useEffect(() => {
     obtenerProyectos();
   }, []);
@@ -20,11 +28,16 @@ function ListadoProyectos() {
           </ul>
         ) : (
           <ul className="listado-proyectos">
+            {
+              alerta ? (
+                <div className={`alerta ${alerta.categoria}`}>{alerta.msg}</div>
+              ) : null
+            }
             <TransitionGroup>
               {
                 proyectos.map((py) => (
                   <CSSTransition
-                    key={py.id}
+                    key={py._id}
                     timeout={200}
                     classNames="proyecto"
                   >

@@ -8,7 +8,7 @@ function Proyecto({ py }) {
   const { proyectoActual, proyecto } = useContext(proyectoContext);
 
   const { obtenerTareas } = useContext(TareaContext);
-  const { nombre, id } = py;
+  const { nombre, _id } = py;
   // Funcion para agregar el proyecto actual
   // eslint-disable-next-line no-shadow
   const seleccionarProyecto = (id) => {
@@ -19,7 +19,7 @@ function Proyecto({ py }) {
     // console.log(proyecto);
     if (proyecto != null) {
       console.log(proyecto[0].id);
-      if (proyecto[0].id === id) {
+      if (proyecto[0].id === _id) {
         setSelect(true);
       } else {
         setSelect(false);
@@ -32,7 +32,7 @@ function Proyecto({ py }) {
       <button
         type="button"
         className={select ? 'btn btn-blank btn-proyecto-select' : 'btn btn-blank'}
-        onClick={() => seleccionarProyecto(id)}
+        onClick={() => seleccionarProyecto(_id)}
       >
         <i className="fas fa-angle-right" />
         {' '}
