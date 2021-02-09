@@ -500,3 +500,13 @@ Navbar
   background-color: rgb(230, 78, 78);
   color: var(--blanco);
 }
+
+.cerrar-sesion{
+  color: white;
+  border: 1px solid white;
+}
+.cerrar-sesion:hover{
+  padding: 1rem;
+  color: var(--gris3);
+  background: white;
+}

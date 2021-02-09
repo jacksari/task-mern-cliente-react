@@ -1,10 +1,22 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import alertaContext from '../../context/alertas/alertaContext';
+import authContext from '../../context/autenticacion/authContext';
 
-function Register() {
+function Register({ history }) {
   // Extraer valores del context alerta
   const { alerta, mostrarAlerta } = useContext(alertaContext);
+
+  const { registrarUsuario, mensaje, autenticado } = useContext(authContext);
+  // En caso de que el usuario se haya autenticado o sea un registro duplicado
+  useEffect(() => {
+    if (autenticado) {
+      history.push('/proyectos');
+    }
+    if (mensaje) {
+      mostrarAlerta(mensaje.msg, mensaje.categoria);
+    }
+  }, [mensaje, autenticado, history]);
   const [usuario, setUsuario] = useState({
     nombre: '',
     email: '',
@@ -39,6 +51,11 @@ function Register() {
     if (password !== confirmar) {
       mostrarAlerta('El passwords deben ser iguales', 'alerta-error');
     }
+    registrarUsuario({
+      nombre,
+      email,
+      password,
+    });
   };
   return (
     <div className="form-usuario">
@@ -98,7 +115,7 @@ function Register() {
             <input type="submit" value="Iniciar Sesión" className="btn btn-primario btn-block" />
           </div>
         </form>
-        <Link to="/iniciar-sesion" className="enlace-cuenta">Obtener cuenta</Link>
+        <Link to="/" className="enlace-cuenta">Obtener cuenta</Link>
       </div>
     </div>
   );
