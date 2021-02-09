@@ -36,7 +36,7 @@ function ListadoTareas() {
                     timeout={200}
                     classNames="tarea"
                   >
-                    <Tarea tarea={tarea} />
+                    <Tarea tarea={tarea} index={index}/>
                   </CSSTransition>
                 ))}
               </TransitionGroup>

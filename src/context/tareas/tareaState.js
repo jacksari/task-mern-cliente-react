@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import { v4 as uuid } from 'uuid';
 import TareaContext from './tareaContext';
 
 import TareaReducer from './tareaReducer';
@@ -12,30 +11,11 @@ import {
   TAREAS_PROYECTO,
   VALIDAR_TAREA,
 } from '../../types';
+import clienteAxios from '../../config/axios';
 
 const TareaState = ({ children }) => {
   const initialState = {
-    tareas: [
-      {
-        id: 1, nombre: 'Elegir plataforma', estado: true, proyectoID: 1,
-      },
-      {
-        id: 2, nombre: 'Elegir precios', estado: true, proyectoID: 1,
-      },
-      {
-        id: 3, nombre: 'Elegir logos', estado: true, proyectoID: 1,
-      },
-      {
-        id: 4, nombre: 'Elegir colores', estado: false, proyectoID: 2,
-      },
-      {
-        id: 5, nombre: 'Elegir plataforma de pago', estado: false, proyectoID: 3,
-      },
-      {
-        id: 6, nombre: 'Elegir hosting', estado: true, proyectoID: 3,
-      },
-    ],
-    tareasproyecto: null,
+    tareasproyecto: [],
     errorTarea: false,
     tareaSeleccionada: null,
   };
@@ -45,21 +25,32 @@ const TareaState = ({ children }) => {
 
   // Crear funciones
   // Obtener tareas de un proyecto
-  const obtenerTareas = (id) => {
-    // console.log('id', id);
-    dispatch({
-      type: TAREAS_PROYECTO,
-      payload: id,
-    });
+  const obtenerTareas = async (proyecto) => {
+    // console.log('id', proyecto);
+    try{
+      const res = await clienteAxios.get(`/api/tareas`, {params: { proyecto }})
+      // console.log(res.data.tareas);
+      dispatch({
+        type: TAREAS_PROYECTO,
+        payload: res.data.tareas,
+      });
+    }catch (e) {
+      console.log(e.response);
+    }
   };
   // Agregar tarea
-  const agregarTarea = (tareaAgregada) => {
-    // eslint-disable-next-line no-param-reassign
-    tareaAgregada.id = uuid();
-    dispatch({
-      type: AGREGAR_TAREAS,
-      payload: tareaAgregada,
-    });
+  const agregarTarea = async (tareaAgregada) => {
+    // console.log(tareaAgregada);
+    try {
+      const res = await clienteAxios.post('/api/tareas', tareaAgregada)
+      // console.log(res);
+      dispatch({
+        type: AGREGAR_TAREAS,
+        payload: tareaAgregada,
+      });
+    }catch (e) {
+      console.log(e);
+    }
   };
   // Valida y muestra el error
   const validarTarea = () => {
@@ -68,18 +59,18 @@ const TareaState = ({ children }) => {
     });
   };
   // Eliminar tareas por id
-  const eliminarTarea = (id) => {
-    dispatch({
-      type: ELIMINAR_TAREA,
-      payload: id,
-    });
-  };
-  // Cambia el estado de tarea
-  const cambiarEstadoTarea = (tarea) => {
-    dispatch({
-      type: ESTADO_TAREA,
-      payload: tarea,
-    });
+  const eliminarTarea = async (id, proyecto) => {
+    // console.log(proyecto,id);
+    try{
+      const res = await clienteAxios.delete(`/api/tareas/${id}`, { params: { proyecto } })
+      // console.log(res);
+      dispatch({
+        type: ELIMINAR_TAREA,
+        payload: id,
+      });
+    }catch (e) {
+      console.log(e.response);
+    }
   };
   // Extrae la tarea para editar
   const guardarTareaActual = (tarea) => {
@@ -89,18 +80,23 @@ const TareaState = ({ children }) => {
     });
   };
   // Edita tarea
-  const actualizarTarea = (tarea) => {
-    dispatch({
-      type: ACTUALIZAR_TAREA,
-      payload: tarea,
-    });
+  const actualizarTarea = async (tarea) => {
+    try{
+      const res = await clienteAxios.put(`/api/tareas/${tarea._id}`,tarea)
+      // console.log(res);
+      dispatch({
+        type: ACTUALIZAR_TAREA,
+        payload: res.data.tarea,
+      });
+    }catch (e) {
+      console.log(e.response);
+    }
   };
 
   return (
   // eslint-disable-next-line react/jsx-filename-extension
     <TareaContext.Provider
       value={{
-        tareas: state.tareas,
         tareasproyecto: state.tareasproyecto,
         errorTarea: state.errorTarea,
         tareaSeleccionada: state.tareaSeleccionada,
@@ -108,7 +104,6 @@ const TareaState = ({ children }) => {
         agregarTarea,
         validarTarea,
         eliminarTarea,
-        cambiarEstadoTarea,
         guardarTareaActual,
         actualizarTarea,
       }}

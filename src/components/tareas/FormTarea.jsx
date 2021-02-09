@@ -53,8 +53,7 @@ function FormTarea() {
     if (tareaSeleccionada === null) {
       // Tarea nueva
       // agregar la nueva tarea al state de tareas
-      tarea.proyectoID = proyectoActual.id;
-      tarea.estado = false;
+      tarea.proyecto = proyectoActual._id;
       agregarTarea(tarea);
     } else {
       // Actualizar tarea existente
@@ -62,7 +61,7 @@ function FormTarea() {
     }
 
     // Obtener tareas
-    obtenerTareas(proyectoActual.id);
+    // obtenerTareas(proyectoActual._id);
 
     // reiniciar al form
     setTarea({

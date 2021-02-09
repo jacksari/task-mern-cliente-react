@@ -25,7 +25,7 @@ const AuthState = ({ children }) => {
 
   // Retorna el usuario autenticado
   const usuarioAutenticado = async () => {
-    console.log('autenticado');
+    // console.log('autenticado');
     const token = localStorage.getItem('token');
     if (token) {
       // Función para enviar el token por heders

@@ -18,7 +18,7 @@ function Proyecto({ py }) {
   useEffect(() => {
     // console.log(proyecto);
     if (proyecto != null) {
-      console.log(proyecto[0].id);
+      // console.log(proyecto[0].id);
       if (proyecto[0].id === _id) {
         setSelect(true);
       } else {
