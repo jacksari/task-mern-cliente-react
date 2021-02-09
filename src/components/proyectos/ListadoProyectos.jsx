@@ -22,13 +22,13 @@ function ListadoProyectos() {
           <ul className="listado-proyectos">
             <TransitionGroup>
               {
-                proyectos.map((proyecto) => (
+                proyectos.map((py) => (
                   <CSSTransition
-                    key={proyecto.id}
+                    key={py.id}
                     timeout={200}
                     classNames="proyecto"
                   >
-                    <Proyecto proyecto={proyecto} />
+                    <Proyecto py={py} />
                   </CSSTransition>
                 ))
               }

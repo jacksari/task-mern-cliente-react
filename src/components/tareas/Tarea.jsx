@@ -61,14 +61,14 @@ function Tarea({ tarea }) {
           className="btn btn-primario"
           onClick={() => seleccionarTarea(tarea)}
         >
-          Editar
+          <i className="far fa-edit" />
         </button>
         <button
           type="button"
           className="btn btn-secundario"
           onClick={() => tareaEliminar(id)}
         >
-          Eliminar
+          <i className="far fa-trash-alt" />
         </button>
       </div>
     </li>

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import alertaContext from '../../context/alertas/alertaContext';
 
 function Register() {
+  // Extraer valores del context alerta
+  const { alerta, mostrarAlerta } = useContext(alertaContext);
   const [usuario, setUsuario] = useState({
     nombre: '',
     email: '',
@@ -23,13 +26,25 @@ function Register() {
     e.preventDefault();
 
     // Validar que no haya campos vacios
-
+    if (nombre.trim() === '' || email.trim() === '' || password.trim() === '' || confirmar.trim() === '') {
+      mostrarAlerta('Todos los campos son obligatorios', 'alerta-error');
+      return;
+    }
     // Passsword mínimo 6 caracteres
-
+    if (password.length < 6) {
+      mostrarAlerta('El password debe ser de al menos 6 caracteres', 'alerta-error');
+      return;
+    }
     // Pasarlo al action
+    if (password !== confirmar) {
+      mostrarAlerta('El passwords deben ser iguales', 'alerta-error');
+    }
   };
   return (
     <div className="form-usuario">
+      {
+        alerta ? (<div className={`alerta ${alerta.categoria}`}>{alerta.msg}</div>) : null
+      }
       <div className="contenedor-form sombra-dark">
         <h1>Obtener una cuenta</h1>
         <form

@@ -39,7 +39,7 @@ function NuevoProyecto() {
       <button
         onClick={() => mostarFormulario()}
         type="button"
-        className="btn btn-block btn-primario"
+        className="btn btn-block btn-primario btn-submit"
       >
         { !formulario ? 'Nuevo Proyecto' : 'Ocultar formulario' }
       </button>
@@ -57,11 +57,14 @@ function NuevoProyecto() {
                 onChange={onChangeProyecto}
                 value={nombre}
               />
-              <input
+              <button
                 type="submit"
-                className="btn btn-block btn-primario"
-                value="Agregar proyecto"
-              />
+                className="btn btn-block btn-primario btn-submit"
+              >
+                Agregar
+                {' '}
+                <i className="fas fa-plus fa-sm" />
+              </button>
 
             </form>
           ) : (null)
@@ -74,5 +77,4 @@ function NuevoProyecto() {
     </>
   );
 }
-
 export default NuevoProyecto;

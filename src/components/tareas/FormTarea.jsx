@@ -86,7 +86,9 @@ function FormTarea() {
           />
         </div>
         <div className="contenedor-input">
-          <input type="submit" className="btn btn-primario btn-submit btn-block" value={tareaSeleccionada ? 'Editar tarea' : 'Agregar tarea'} />
+          <button type="submit" className="btn btn-primario btn-submit btn-block">
+            {tareaSeleccionada ? 'Editar tarea' : 'Agregar tarea'}
+          </button>
         </div>
       </form>
       {

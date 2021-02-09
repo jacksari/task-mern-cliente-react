@@ -46,7 +46,7 @@ const TareaState = ({ children }) => {
   // Crear funciones
   // Obtener tareas de un proyecto
   const obtenerTareas = (id) => {
-    console.log('id', id);
+    // console.log('id', id);
     dispatch({
       type: TAREAS_PROYECTO,
       payload: id,
